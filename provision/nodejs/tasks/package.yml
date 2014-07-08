@@ -1,0 +1,19 @@
+- name: update apt cache (if out of date)
+  #Updates it only every 4 hours
+  apt: update_cache=yes cache_valid_time={{ 60*60*4 }}
+  sudo: true
+
+- name: node.js | Make sure the ansible required dependencies are installed
+  apt:
+    pkg: python-pycurl
+    state: present
+
+- name: nodejs | Add the nodejs repository
+  apt_repository:
+    repo: ppa:chris-lea/node.js
+    state: present
+
+- name: node.js | Install the node.js package
+  apt:
+    pkg: nodejs
+    state: present

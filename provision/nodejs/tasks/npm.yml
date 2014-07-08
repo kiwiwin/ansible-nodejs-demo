@@ -1,0 +1,2 @@
+- name: install npm
+  shell: curl https://www.npmjs.org/install.sh | bash creates=/usr/bin/npm
