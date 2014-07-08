@@ -1,0 +1,18 @@
+- name: checkout demo source code
+  git: repo=git://github.com/kiwiwin/ansible-nodejs-demo.git
+       dest=/nodejs-demo
+
+- name: install node dependencies
+  npm: path=/nodejs-demo
+
+- name: get running app list with forever
+  command: forever list
+  register: running_app
+
+- name: restart server if server is already running
+  command: forever restart /nodejs-demo/bin/www
+  when: "running_app.stdout.find('/nodejs-demo/bin/www') != -1"
+
+- name: start server
+  command: forever start /nodejs-demo/bin/www
+  when: "running_app.stdout.find('/nodejs-demo/bin/www') == -1"
