@@ -4,4 +4,5 @@
   sudo: yes
   roles:
     - nodejs
+    - mongodb
     - server

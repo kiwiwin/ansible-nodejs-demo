@@ -1,0 +1,8 @@
+---
+
+- include: package.yml
+
+- name: Ensure mongodb is started
+  service: name=mongodb state=started
+
+- include: config.yml
