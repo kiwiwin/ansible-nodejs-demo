@@ -1,0 +1,7 @@
+---
+
+- name: restart server
+  command: forever restart /nodejs-demo/bin/www
+
+- name: start server
+  command: forever start /nodejs-demo/bin/www

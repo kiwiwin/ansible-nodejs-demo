@@ -10,9 +10,11 @@
   register: running_app
 
 - name: restart server if server is already running
-  command: forever restart /nodejs-demo/bin/www
+  command: echo 'restart server'
+  notify: restart server
   when: "running_app.stdout.find('/nodejs-demo/bin/www') != -1"
 
 - name: start server
-  command: forever start /nodejs-demo/bin/www
+  command: echo 'start server'
+  notify: start server
   when: "running_app.stdout.find('/nodejs-demo/bin/www') == -1"
